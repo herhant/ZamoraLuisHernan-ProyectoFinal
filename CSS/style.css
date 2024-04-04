@@ -1,10 +1,12 @@
 /* ESTILOS GENERALES */
 
+
 body {
     background-color: #262626;
 }
 
 /* Navbar */
+
 .navbar {
     background-color: #035AA6;
 }
@@ -19,8 +21,9 @@ body {
 }
 
 /* Secciones */
+
 .section {
-    padding: 50px 0;
+    padding: 33px 0;
 }
 
 .section h2 {
@@ -32,6 +35,7 @@ body {
 }
 
 /* Footer */
+
 .footer {
     background-color: #000;
     color: #FFFFFF;
@@ -48,7 +52,9 @@ body {
     text-decoration: underline;
 }
 
+
 /* INICIO */
+
 
 .carousel-item img {
     background-color: #038C7F;
@@ -62,7 +68,46 @@ body {
     padding: 20px;
 }
 
+@media (max-width: 639px) {
+    #carouselControls {
+        display: none; 
+    }
+    #carouselImages {
+        display: block; 
+        text-align: center;
+        padding: 9px;
+    }
+    #carouselImages img {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+    .txtinicio {
+        margin-bottom: 61px;
+    }
+    .col-md-6 {
+        margin-bottom: 61px;
+        margin-right: 19px;
+    }
+}
+
+@media (min-width: 640px) {
+    #carouselImages {
+        display: none;
+    }
+    .col-md-6 {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 360px) {
+    .txtinicio {
+        margin-bottom: 61px; 
+}
+}
+
+
 /* PORTFOLIO */
+
 
 #portfolio .container {
     margin-top: 50px;
@@ -84,7 +129,9 @@ body {
     transform: scale(1.06);
 }
 
+
 /* SERVICIOS */
+
 
 #servicios {
     background-color: #262626;
@@ -128,4 +175,96 @@ body {
 
 .servicio-desa {
     background-color: #BF6849;
+}
+
+@media (max-width: 639px) {
+    #servicios .servicios-container {
+        margin-bottom: 20px;
+    }
+
+    #servicios .servicio {
+        width: 100%;
+    }
+}
+
+
+/* CONTACTO */
+
+
+#contacto {
+    background-color: #262626;
+    color: #FFFFFF;
+    padding: 50px 0;
+}
+
+#contacto h2 {
+    color: #035AA6;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.mapa {
+    margin-bottom: 30px;
+}
+
+.informacion-contacto p {
+    color: #038C7F;
+    margin-bottom: 10px;
+}
+
+.informacion-contacto p i {
+    margin-right: 10px;
+}
+
+.formulario-contacto {
+    background-color: #64858C;
+    padding: 20px;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.formulario-contacto label {
+    color: #FFFFFF;
+}
+
+.formulario-contacto button {
+    margin-top: 20px;
+}
+
+
+/* HER */
+
+
+#her {
+    background-color: #262626;
+    color: #FFFFFF;
+    padding: 50px 0;
+}
+
+#her h2 {
+    color: #035AA6;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.descripcion {
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.imagen {
+    width: 100%;
+    text-align: center;
+}
+
+.imagen img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
