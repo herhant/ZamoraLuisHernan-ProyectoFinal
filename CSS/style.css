@@ -172,4 +172,34 @@ body {
         height: auto;
         border-radius: 10px; }
 
+/* COTIZADOR */
+#cotizador {
+  margin-top: 40px;
+  background-color: #262626;
+  padding: 20px;
+  border-radius: 10px;
+  color: #FFFFFF; }
+
+.nav-tabs .nav-link {
+  color: #FFFFFF; }
+
+.nav-tabs .nav-link.active {
+  background-color: #035AA6;
+  border-color: #035AA6; }
+
+.servicio-video {
+  background-color: #038C7F;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px; }
+
+#botonCarritoCantidad,
+#botonCarritoServicio {
+  transition: background-color 0.3s, color 0.3s; }
+
+.nav-tabs .nav-link.active {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important; }
+
 /*# sourceMappingURL=style.css.map */
