@@ -48,36 +48,38 @@
             <div class="servicios-container">
                 <div class="servicio servicio-foto">
                     <h3>Fotografía</h3>
-                    <p class="servicio-descripcion">Edición de fotografía</p>
+                    <p class="servicio-descripcion">Edición de fotografía (x6)</p>
                     <p class="servicio-precio">$100</p>
                     <p class="servicio-descripcion">Sesión de fotos</p>
-                    <p class="servicio-precio">$200</p>
-                    <p class="servicio-descripcion">Retrato</p>
-                    <p class="servicio-precio">$200</p>
-                    <p class="servicio-descripcion">Producto</p>
+                    <p class="servicio-precio">$600</p>
+                    <p class="servicio-descripcion">Retrato (x6)</p>
                     <p class="servicio-precio">$300</p>
+                    <p class="servicio-descripcion">Producto (x6)</p>
+                    <p class="servicio-precio">$200</p>
                 </div>
                 <div class="servicio servicio-desa">
                     <h3>Desarrollo Web</h3>
                     <p class="servicio-descripcion">Desarrollo de sitio web responsivo</p>
-                    <p class="servicio-precio">$300</p>
+                    <p class="servicio-precio">$1000</p>
                     <p class="servicio-descripcion">Mantenimiento y actualización de sitio web</p>
-                    <p class="servicio-precio">$100</p>
+                    <p class="servicio-precio">$300</p>
                     <p class="servicio-descripcion">Desarrollo de aplicaciones web</p>
-                    <p class="servicio-precio">$400</p>
+                    <p class="servicio-precio">$500</p>
                     <p class="servicio-descripcion">Optimización para motores de búsqueda (SEO)</p>
                     <p class="servicio-precio">$100</p>
                 </div>
                 <div class="servicio servicio-video" style="background-color: #28a745;">
                     <h3>Video</h3>
-                    <p class="servicio-descripcion">Edición de video</p>
+                    <p class="servicio-descripcion">Edición de video (hasta 5min)</p>
+                    <p class="servicio-precio">$100</p>
+                    <p class="servicio-descripcion">Edición de video (hasta 15 min)</p>
                     <p class="servicio-precio">$200</p>
                     <p class="servicio-descripcion">Sesión de video</p>
-                    <p class="servicio-precio">$300</p>
-                    <p class="servicio-descripcion">Video promocional</p>
-                    <p class="servicio-precio">$500</p>
-                    <p class="servicio-descripcion">Video de evento</p>
-                    <p class="servicio-precio">$300</p>
+                    <p class="servicio-precio">$1000</p>
+                    <p class="servicio-descripcion">Video producto (x3)</p>
+                    <p class="servicio-precio">$200</p>
+                    <p class="servicio-descripcion">Video de evento(x3)</p>
+                    <p class="servicio-precio">$600</p>
                 </div>
             </div>
             <div id="cotizador" class="mt-5">
@@ -99,8 +101,10 @@
                             <input type="number" id="numVideos" min="0" value="0" class="form-control mb-3">
                             <label for="numSitios">Cantidad de Sitios Web:</label>
                             <input type="number" id="numSitios" min="0" value="0" class="form-control mb-3">
-                            <button id="botonCalcularCantidad" class="btn btn-primary" onclick="mostrarCostoPorCantidad()">Calcular Costo</button>
-                            <p id="resultadoCantidad" class="mt-3">Costo Total: $0.00</p>
+                            <div class="mt-3">
+                                <button id="botonCalcularCantidad" class="btn btn-primary" onclick="mostrarCostoPorCantidad()">Calcular Costo</button>
+                                <p id="resultadoCantidad" class="mt-3">Costo Total: $0.00</p>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="porServicio" role="tabpanel" aria-labelledby="porServicio-tab">
@@ -108,48 +112,70 @@
                             <h4>Fotografía</h4>
                             <label for="tipoFoto">Tipo de sesión:</label>
                             <select id="tipoFoto" class="form-control mb-3">
-                                <option value="200">Retrato - $200</option>
-                                <option value="300">Producto - $300</option>
+                                <option value="600">Sesión de fotos - $600</option>
+                                <option value="300">Retrato - $300</option>
+                                <option value="200">Producto - $200</option>
                             </select>
-                            <label for="numEdicionesFoto">Cantidad de Ediciones:</label>
+                            <label for="numEdicionesFoto">Cantidad:</label>
                             <input type="number" id="numEdicionesFoto" min="0" value="0" class="form-control mb-3">
                             
                             <h4>Video</h4>
                             <label for="tipoVideo">Tipo de sesión:</label>
                             <select id="tipoVideo" class="form-control mb-3">
-                                <option value="300">Video de evento - $300</option>
-                                <option value="500">Video promocional - $500</option>
+                                <option value="1000">Sesión de video - $1000</option>
+                                <option value="200">Video producto - $200</option>
+                                <option value="600">Video de evento - $600</option>
                             </select>
-                            <label for="numEdicionesVideo">Cantidad de Ediciones:</label>
+                            <label for="numEdicionesVideo">Cantidad:</label>
                             <input type="number" id="numEdicionesVideo" min="0" value="0" class="form-control mb-3">
                             
                             <h4>Desarrollo Web</h4>
                             <label for="tipoSitio">Tipo de desarrollo:</label>
                             <select id="tipoSitio" class="form-control mb-3">
-                                <option value="300">Sitio web responsivo - $300</option>
-                                <option value="400">Aplicación web - $400</option>
+                                <option value="1000">Sitio web responsivo - $1000</option>
+                                <option value="500">Aplicación web - $500</option>
+                                <option value="300">Mantenimiento y actualización de sitio web - $300</option>
+                                <option value="100">Optimización para motores de búsqueda (SEO) - $100</option>
                             </select>
-                            <button id="botonCalcularServicio" class="btn btn-primary" onclick="mostrarCostoPorServicio()">Calcular Costo</button>
-                            <p id="resultadoServicio" class="mt-3">Costo Total: $0.00</p>
+                            <label for="numSitiosServicio">Cantidad:</label>
+                            <input type="number" id="numSitiosServicio" min="0" value="0" class="form-control mb-3">
+                            <div class="mt-3">
+                                <button id="botonCalcularServicio" class="btn btn-primary" onclick="mostrarCostoPorServicio()">Calcular Costo</button>
+                                <p id="resultadoServicio" class="mt-3">Costo Total: $0.00</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="mt-3">
+                <button id="botonGuardarConfiguracion" class="btn btn-dark" onclick="guardarConfiguracion()">Guardar Carrito</button>
+                <button id="botonCargarConfiguracion" class="btn btn-dark" onclick="cargarConfiguracion()">Cargar Carrito</button>
+            </div>
         </div>
     </section>
-    <footer class="mt-auto">
-        <div class="container text-center py-3">
-            <p class="m-0">Derechos Reservados 2024 © HER</p>
+    <footer class="footer mt-auto bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <a href="https://wa.me/+541122628372" class="footer-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/her.arw/" class="footer-icon"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    Diseñado por Her "hant" Zamora
+                </div>
+            </div>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-    <script src="../js/script.js"></script>
-
+    <script src="../JS/script.js"></script>
 </body>
 </html>
+
