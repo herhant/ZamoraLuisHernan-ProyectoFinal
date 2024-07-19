@@ -1,127 +1,140 @@
-// Cálculo y limpieza de costos por cantidad
+// Funciones auxiliares para manejar el localStorage
+const saveToLocalStorage = (key, value) => {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+        console.error('Error saving to localStorage', error);
+    }
+};
+
+const loadFromLocalStorage = (key) => {
+    try {
+        return JSON.parse(localStorage.getItem(key));
+    } catch (error) {
+        console.error('Error loading from localStorage', error);
+        return null;
+    }
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("porCantidad-tab").addEventListener("click", mostrarCostoPorCantidad);
+    document.getElementById("porServicio-tab").addEventListener("click", mostrarCostoPorServicio);
+
+    showWikipediaData();
+
+    const numFotosInput = document.getElementById('numFotos');
+    const numVideosInput = document.getElementById('numVideos');
+    const numSitiosInput = document.getElementById('numSitios');
+
+    const tipoFotoInput = document.getElementById('tipoFoto');
+    const numEdicionesFotoInput = document.getElementById('numEdicionesFoto');
+    const tipoVideoInput = document.getElementById('tipoVideo');
+    const numEdicionesVideoInput = document.getElementById('numEdicionesVideo');
+    const tipoSitioInput = document.getElementById('tipoSitio');
+    const numSitiosServicioInput = document.getElementById('numSitiosServicio');
+
+    if(numFotosInput && numVideosInput && numSitiosInput) {
+        numFotosInput.addEventListener('input', mostrarCostoPorCantidad);
+        numVideosInput.addEventListener('input', mostrarCostoPorCantidad);
+        numSitiosInput.addEventListener('input', mostrarCostoPorCantidad);
+        }
+    if (tipoFotoInput && numEdicionesFotoInput && tipoVideoInput && numEdicionesVideoInput && tipoSitioInput && numSitiosServicioInput) {
+        tipoFotoInput.addEventListener('input', mostrarCostoPorServicio);
+        numEdicionesFotoInput.addEventListener('input', mostrarCostoPorServicio);
+        tipoVideoInput.addEventListener('input', mostrarCostoPorServicio);
+        numEdicionesVideoInput.addEventListener('input', mostrarCostoPorServicio);
+        tipoSitioInput.addEventListener('input', mostrarCostoPorServicio);
+        numSitiosServicioInput.addEventListener('input', mostrarCostoPorServicio);
+    }
+    
+    document.getElementById("agregarAlCarrito").addEventListener("click", () => {
+        Swal.fire({
+            title: '¡Añadido al Carrito!',
+            text: 'Los productos han sido añadidos al carrito exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    });
+    
+    document.getElementById("limpiarValores").addEventListener("click", limpiarValores);
+});
 
 function mostrarCostoPorCantidad() {
-    const numFotos = document.getElementById('numFotos').value;
-    const numVideos = document.getElementById('numVideos').value;
-    const numSitios = document.getElementById('numSitios').value;
-
-    const costoFotos = numFotos * 25;
-    const costoVideos = numVideos * 75;
-    const costoSitios = numSitios * 1000;
+    const numFotos = parseInt(document.getElementById("numFotos").value) || 0;
+    const numVideos = parseInt(document.getElementById("numVideos").value) || 0;
+    const numSitios = parseInt(document.getElementById("numSitios").value) || 0;
+    const costoFotos = numFotos * 100;
+    const costoVideos = numVideos * 200;
+    const costoSitios = numSitios * 500;
 
     const costoTotal = costoFotos + costoVideos + costoSitios;
 
-    document.getElementById('resultadoCantidad').innerText = `Costo Total: $${costoTotal.toFixed(2)}`;
-
-    const botonCalcular = document.getElementById('botonCalcularCantidad');
-    if (costoTotal > 0) {
-        botonCalcular.innerText = 'Limpiar';
-        botonCalcular.onclick = limpiarCostoPorCantidad;
-    }
+    document.getElementById("resultadoCantidad").textContent = `Costo Total: $${costoTotal.toFixed(2)}`;
 }
-
-function limpiarCostoPorCantidad() {
-    document.getElementById('numFotos').value = 0;
-    document.getElementById('numVideos').value = 0;
-    document.getElementById('numSitios').value = 0;
-    document.getElementById('resultadoCantidad').innerText = 'Costo Total: $0.00';
-
-    const botonCalcular = document.getElementById('botonCalcularCantidad');
-    botonCalcular.innerText = 'Calcular Costo';
-    botonCalcular.onclick = mostrarCostoPorCantidad;
-}
-
-// Cálculo y limpieza de costos por servicio
 
 function mostrarCostoPorServicio() {
-    const tipoFoto = document.getElementById('tipoFoto').value;
-    const numEdicionesFoto = document.getElementById('numEdicionesFoto').value;
-    const tipoVideo = document.getElementById('tipoVideo').value;
-    const numEdicionesVideo = document.getElementById('numEdicionesVideo').value;
-    const tipoSitio = document.getElementById('tipoSitio').value;
-    const numSitios = document.getElementById('numSitiosServicio').value;
-
+    const tipoFoto = parseFloat(document.getElementById("tipoFoto").value) || 0;
+    const numEdicionesFoto = parseInt(document.getElementById("numEdicionesFoto").value) || 0;
+    const tipoVideo = parseFloat(document.getElementById("tipoVideo").value) || 0;
+    const numEdicionesVideo = parseInt(document.getElementById("numEdicionesVideo").value) || 0;
+    const tipoSitio = parseFloat(document.getElementById("tipoSitio").value) || 0;
+    const numSitiosServicio = parseInt(document.getElementById("numSitiosServicio").value) || 0;
     const costoFoto = tipoFoto * numEdicionesFoto;
-    const costoVideo = tipoVideo * numEdicionesVideo;
-    const costoSitio = tipoSitio * numSitios;
+const costoVideo = tipoVideo * numEdicionesVideo;
+const costoSitio = tipoSitio * numSitiosServicio;
 
-    const costoTotal = costoFoto + costoVideo + costoSitio;
+const costoTotal = costoFoto + costoVideo + costoSitio;
 
-    document.getElementById('resultadoServicio').innerText = `Costo Total: $${costoTotal.toFixed(2)}`;
+document.getElementById("resultadoServicio").textContent = `Costo Total: $${costoTotal.toFixed(2)}`;
+}
 
-    const botonCalcular = document.getElementById('botonCalcularServicio');
-    if (costoTotal > 0) {
-        botonCalcular.innerText = 'Limpiar';
-        botonCalcular.onclick = limpiarCostoPorServicio;
+function limpiarValores() {
+    document.getElementById("numFotos").value = 0;
+    document.getElementById("numVideos").value = 0;
+    document.getElementById("numSitios").value = 0;
+    document.getElementById("tipoFoto").selectedIndex = 0;
+    document.getElementById("numEdicionesFoto").value = 0;
+    document.getElementById("tipoVideo").selectedIndex = 0;
+    document.getElementById("numEdicionesVideo").value = 0;
+    document.getElementById("tipoSitio").selectedIndex = 0;
+    document.getElementById("numSitiosServicio").value = 0;
+    document.getElementById("resultadoCantidad").textContent = "Costo Total: $0.00";
+document.getElementById("resultadoServicio").textContent = "Costo Total: $0.00";
+}
+
+// API de Wikipedia
+const fetchWikipediaData = async (searchTerm) => {
+    const apiUrl = `https://es.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles=${searchTerm}`;
+    try {
+        const response = await axios.get(apiUrl);
+        const pages = response.data.query.pages;
+        const page = Object.values(pages)[0];
+        return page.extract;
+    } catch (error) {
+        console.error('Error fetching Wikipedia data', error);
+        return 'No se pudo obtener información de Wikipedia en este momento.';
     }
-}
+};
 
-function limpiarCostoPorServicio() {
-    document.getElementById('tipoFoto').value = 0;
-    document.getElementById('numEdicionesFoto').value = 0;
-    document.getElementById('tipoVideo').value = 0;
-    document.getElementById('numEdicionesVideo').value = 0;
-    document.getElementById('tipoSitio').value = 0;
-    document.getElementById('numSitiosServicio').value = 0;
-    document.getElementById('resultadoServicio').innerText = 'Costo Total: $0.00';
-
-    const botonCalcular = document.getElementById('botonCalcularServicio');
-    botonCalcular.innerText = 'Calcular Costo';
-    botonCalcular.onclick = mostrarCostoPorServicio;
-}
-
-// Guardar configuraciones en localStorage
-function guardarConfiguracion() {
-    const configuracion = {
-        numFotos: document.getElementById("numFotos").value,
-        numVideos: document.getElementById("numVideos").value,
-        numSitios: document.getElementById("numSitios").value,
-        tipoFoto: document.getElementById("tipoFoto").value,
-        numEdicionesFoto: document.getElementById("numEdicionesFoto").value,
-        tipoVideo: document.getElementById("tipoVideo").value,
-        numEdicionesVideo: document.getElementById("numEdicionesVideo").value,
-        tipoSitio: document.getElementById("tipoSitio").value,
-        numSitiosServicio: document.getElementById("numSitiosServicio").value
-    };
-
-    localStorage.setItem('configuracionServicios', JSON.stringify(configuracion));
-}
-
-// Cargar configuraciones desde localStorage
-function cargarConfiguracion() {
-    const configuracionGuardada = localStorage.getItem('configuracionServicios');
-    if (configuracionGuardada) {
-        const configuracion = JSON.parse(configuracionGuardada);
-
-
-        document.getElementById("numFotos").value = configuracion.numFotos || 0;
-        document.getElementById("numVideos").value = configuracion.numVideos || 0;
-        document.getElementById("numSitios").value = configuracion.numSitios || 0;
-
-
-        document.getElementById("tipoFoto").value = configuracion.tipoFoto || '600'; // Valor por defecto si no está definido
-        document.getElementById("numEdicionesFoto").value = configuracion.numEdicionesFoto || 0;
-        document.getElementById("tipoVideo").value = configuracion.tipoVideo || '1000'; // Valor por defecto si no está definido
-        document.getElementById("numEdicionesVideo").value = configuracion.numEdicionesVideo || 0;
-        document.getElementById("tipoSitio").value = configuracion.tipoSitio || '1000'; // Valor por defecto si no está definido
-        document.getElementById("numSitiosServicio").value = configuracion.numSitiosServicio || 0;
-    }
-}
-
-// Event Listeners
-document.getElementById("botonGuardarConfiguracion").addEventListener('click', guardarConfiguracion);
-document.getElementById("botonCargarConfiguracion").addEventListener('click', cargarConfiguracion);
-
-
-
-
-// Limpiar todos los campos de costos y servicios
-
-function limpiarCosto() {
-    limpiarCostoPorCantidad();
-    limpiarCostoPorServicio();
-}
-
-
-document.getElementById("botonLimpiar").addEventListener('click', limpiarCosto);
-document.getElementById("botonLimpiarServicio").addEventListener('click', limpiarCosto);
+// Mostrar datos en el DOM
+const showWikipediaData = async () => {
+    const searchTerm = 'Fotografía'; 
+    const contentDiv = document.getElementById('fotografia-content');
+    const data = await fetchWikipediaData(searchTerm);
+    
+    const item = `
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Técnicas de fotografía
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    ${data}
+                </div>
+            </div>
+        </div>
+    `;
+    contentDiv.innerHTML = item;
+};
